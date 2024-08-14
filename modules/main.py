@@ -40,31 +40,34 @@ class Bing:
     def login(self):
         """ Dois click para chegar a tela de login """
         self.try_click('//*[@id="id_s"]')
+        sleep(3)
         self.try_click('//*[@id="b_idProviders"]/li[1]/a/span')
-        sleep(1)
+        sleep(3)
         """Digita email e confirma """
         self.try_send('//*[@id="i0116"]',self.email)
+        sleep(3)
         self.try_click('//*[@id="idSIButton9"]')
         sleep(1)
         """Digita senha e confirma """
         self.try_send('//*[@id="i0118"]',self.senha)
+        sleep(3)
         self.try_click('//*[@id="idSIButton9"]')
         sleep(1)
         """"Confirmação do manter sempra ativo"""
         self.try_click('//*[@id="acceptButton"]')
-
+        sleep(3)
         """Aceitar popup"""
         self.try_click('//*[@id="bnp_btn_accept"]')
 
     def search_ini(self,text:str)->None:
         self.try_send(self.search_bar,text)
-        sleep(2)
+        sleep(10)
         self.try_click('//*[@id="sa_5004"]/div[2]')
 
     def search_loop(self,text:str)->None:
         self.try_clear(self.search_bar)
         self.try_send(self.search_bar,text)
-        self.try_click('//*[@id="sa_5003"]')
+        self.try_click('//*[@id="sb_form_go"]')
 bing = Bing()
 
 bing.get('https://www.bing.com')
@@ -75,6 +78,7 @@ bing.search_ini('Iniciando')
 pesquisas = 0
 while pesquisas < 50:
     bing.search_loop(f'a{pesquisas}')
+    sleep(15)
     pesquisas= pesquisas + 1
 
 
