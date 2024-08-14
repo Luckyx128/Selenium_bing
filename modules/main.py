@@ -1,88 +1,12 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from time import sleep
+import  logging
+from bing_selenium import Bing
+logger = logging.getLogger(__name__)
 
-class Bing:
-    
-    def __init__(self) -> None:
-        self.driver = webdriver.Chrome()
-        self.email = 'luckyxam128@gmail.com'
-        self.senha = 'Ps2pcwii'
-        self.search_bar = '//*[@id="sb_form_q"]'
-    def get(self,url:str)->str:
-        self.driver.get(url)
-    def try_click(self,xpath:str)->None:
-        attempts = 0
-        while attempts < 10:    
-            try:
-                self.driver.find_element('xpath',xpath).click()
-                break
-            except Exception:
-              attempts =  attempts + 1
-    def try_send(self,xpath:str,text)->None:
-        attempts = 0
-        while attempts < 10:    
-            try:
-                self.driver.find_element('xpath',xpath).send_keys(text)
-                break
-            except Exception:
-                attempts= attempts + 1
-    
-    def try_clear(self,xpath:str)->None:
-        attempts = 0
-        while attempts < 10:    
-            try:
-                self.driver.find_element('xpath',xpath).clear()
-                break
-            except Exception:
-                attempts= attempts + 1
+def main() -> None:
+    """Primary function to start script"""
+    logging.basicConfig(filename='../logs/infos.log',level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+    logger.info('Stated')
+    Bing().start()
 
-    def login(self):
-        """ Dois click para chegar a tela de login """
-        self.try_click('//*[@id="id_s"]')
-        sleep(3)
-        self.try_click('//*[@id="b_idProviders"]/li[1]/a/span')
-        sleep(3)
-        """Digita email e confirma """
-        self.try_send('//*[@id="i0116"]',self.email)
-        sleep(3)
-        self.try_click('//*[@id="idSIButton9"]')
-        sleep(1)
-        """Digita senha e confirma """
-        self.try_send('//*[@id="i0118"]',self.senha)
-        sleep(3)
-        self.try_click('//*[@id="idSIButton9"]')
-        sleep(1)
-        """"Confirmação do manter sempra ativo"""
-        self.try_click('//*[@id="acceptButton"]')
-        sleep(3)
-        """Aceitar popup"""
-        self.try_click('//*[@id="bnp_btn_accept"]')
-
-    def search_ini(self,text:str)->None:
-        self.try_send(self.search_bar,text)
-        sleep(10)
-        self.try_click('//*[@id="sa_5004"]/div[2]')
-
-    def search_loop(self,text:str)->None:
-        self.try_clear(self.search_bar)
-        self.try_send(self.search_bar,text)
-        self.try_click('//*[@id="sb_form_go"]')
-bing = Bing()
-
-bing.get('https://www.bing.com')
-sleep(5)
-bing.login()
-sleep(5)
-bing.search_ini('Iniciando')
-pesquisas = 0
-while pesquisas < 50:
-    bing.search_loop(f'a{pesquisas}')
-    sleep(15)
-    pesquisas= pesquisas + 1
-
-
-
-
-
-sleep(300)
+if __name__ == "__main__":
+    main()
