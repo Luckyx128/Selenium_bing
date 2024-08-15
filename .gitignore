@@ -2,4 +2,5 @@
 /venv
 /logs
 /logs/infos.log
+.idea
 /.idea

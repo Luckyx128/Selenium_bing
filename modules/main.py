@@ -4,7 +4,7 @@ logger = logging.getLogger(__name__)
 
 def main() -> None:
     """Primary function to start script"""
-    logging.basicConfig(filename='../logs/infos.log',level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(level=logging.DEBUG,format='%(asctime)s - %(levelname)s - %(message)s')
     logger.info('Stated')
     Bing().start()
 

@@ -1,20 +1,23 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from time import sleep
 import logging
-
+import json
 logger = logging.getLogger(__name__)
-
+chrome_options = Options()
+# chrome_options.add_argument("--headless")  # Habilitar o modo headless
+# chrome_options.add_argument("--disable-gpu")
 
 class Bing:
 
     def __init__(self) -> None:
-
-        self.driver = webdriver.Chrome()
-        self.email = 'ddasdas@gmail.com'
-        self.password = 'pass'
+        with open("../config.json",'r') as configs:
+            credentials = json.load(configs)
+        self.driver = webdriver.Chrome(options=chrome_options)
+        self.email = credentials['general']['email']
+        self.password = credentials['general']['pass']
         self.search_bar = '//*[@id="sb_form_q"]'
-
     def get(self, url: str) -> None:
         self.driver.get(url)
 
