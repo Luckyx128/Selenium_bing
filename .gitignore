@@ -1,3 +1,5 @@
+config.json
 /venv
 /logs
 /logs/infos.log
+.idea
