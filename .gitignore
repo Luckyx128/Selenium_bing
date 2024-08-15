@@ -4,3 +4,4 @@
 /logs/infos.log
 .idea
 /.idea
+**__pycache__
