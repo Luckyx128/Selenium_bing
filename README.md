@@ -6,5 +6,5 @@
 
 ## Authors
 
-- [@Luckyx128](https://www.github.com/octokatherine)
+- [@Luckyx128](https://github.com/Luckyx128)
 
