@@ -1,8 +1,9 @@
 import customtkinter
-import main
+import threading
+from main import main as flux
 def button_callback():
-    main.main()
-
+    main = threading.Thread(target=flux)
+    main.start()
 app = customtkinter.CTk()
 app.geometry("400x150")
 
