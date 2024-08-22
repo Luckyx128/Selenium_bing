@@ -12,7 +12,7 @@ chrome_options = Options()
 class Bing:
 
     def __init__(self) -> None:
-        with open("../config.json",'r') as configs:
+        with open("C:\Projects\Selenium_bing\config.json",'r') as configs:
             credentials = json.load(configs)
         self.driver = webdriver.Chrome(options=chrome_options)
         self.email = credentials['general']['email']
