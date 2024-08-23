@@ -15,7 +15,7 @@ class Bing:
         try:
            with open(r"C:\Users\lucas\Projetos\Selenium_bing\config.json") as configs:
                credentials = json.load(configs)
-        except Exception.args:
+        except Exception:
             with open(r"C:\Projects\Selenium_bing\config.json",'r') as configs:
                 credentials = json.load(configs)
         self.driver = webdriver.Chrome(options=chrome_options)
@@ -56,8 +56,11 @@ class Bing:
 
                 attempts = attempts + 1
 
-    def login(self):
-        """ Dois click para chegar a tela de login """
+    def login(self) -> None:
+        """ Dois click para chegar a tela de login
+            Returns:
+                None:não retorna nada
+        """
         self.try_click('//*[@id="id_s"]')
         sleep(3)
         self.try_click('//*[@id="b_idProviders"]/li[1]/a/span')
